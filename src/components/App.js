@@ -23,14 +23,12 @@ class App extends React.Component {
 
 	componentDidMount() {
 		let day = new Date();
-		let result = day.toLocaleDateString("en-GB", {
+		let result = day.toLocaleDateString("en-US", {
 			year: "numeric",
 			month: "2-digit",
-			day: "2-digit"
+			day: "2-digit",
+            formatMatcher: "basic"
 		});
-		// let month = result.getMonth() + 1;
-		// let year = result.getFullYear();
-		// let date = result.getDate();
 
 		console.log(result, result.replace(/\//gi, "-"));
 
@@ -52,13 +50,27 @@ class App extends React.Component {
 
 		axios.get("https://stock-shark.com/api/v1/getHistoricalPrice", {
 			params: {
-				ticker: "DOW",
+				ticker: "TSLA",
 				token: "hqhgglrpsjs",
-				startDate: "",
-				endDate: "",
+				// startDate: result.replace(/\//gi, "-").toString(),
+				// endDate: result.replace(/\//gi, "-").toString(),
+                startDate: "02-04-2022",
+                endDate: "02-04-2022",
 				periodType: "daily"
 			}
-		});
+		}).then((response) => {
+            console.log(response);
+        })
+
+
+        axios.get('https://stock-shark.com/api/v1/getLiveQuote', {
+            params: {
+                ticker: 'TSLA',
+                token: "hqhgglrpsjs"
+            }
+        }).then((response) => {
+            console.log(response)
+        })
 	}
 
 	render() {
@@ -73,3 +85,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+//https://stock-shark.com/api/v1/getHistoricalPrice?ticker=DOW&token=hqhgglrpsjs&startDate=06%2F02%2F2022&endDate=06%2F02%2F2022&periodType=daily
