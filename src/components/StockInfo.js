@@ -1,11 +1,16 @@
 import React from "react";
+import axios from "axios";
 
 const StockInfo = (props) => {
-	console.log(props);
 	return (
 		<div>
-			<h1>{props.stock.companyName}</h1>
-            <h2></h2>
+			<h1>{props.symbol}</h1>
+			<h2>{props.description}</h2>
+			<h3>{props.fiftyTwoWeekhigh}</h3>
+			<h3>{props.fiftyTwoWeekLow}</h3>
+			<h3>{props.openPrice}</h3>
+			<h3>{props.closePrice}</h3>
+			<h3>{props.netChange}</h3>
 		</div>
 	);
 };
