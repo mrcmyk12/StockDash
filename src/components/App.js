@@ -18,24 +18,12 @@ class App extends React.Component {
 		theStocks: [],
 		stock: [],
 		news: [],
-		stockPrice: [],
-		userStocks: [
-			"AAPL",
-			"MSFT",
-			"AMZN",
-			"FB",
-			"GOOGL",
-			"TSLA",
-			"NVDA",
-			"BRK.B",
-			"JPM",
-			"V"
-		]
+		stockPrice: []
 	};
 
-	onSearchSubmit = async (term) => {
-		// let day = new Date();
-		// let stringDay = day.toString();
+	onSearchSubmit = (term) => {
+		let day = new Date();
+		let stringDay = day.toString();
 
 		// console.log(day);
 
@@ -49,13 +37,50 @@ class App extends React.Component {
 		// 	console.log(day);
 		// }
 
-		// let result = day.toLocaleDateString("en-US", {
-		// 	year: "numeric",
-		// 	month: "2-digit",
-		// 	day: "2-digit",
-		// 	formatMatcher: "basic"
-		// });
+		let result = day.toLocaleDateString("en-US", {
+			year: "numeric",
+			month: "2-digit",
+			day: "2-digit",
+			formatMatcher: "basic"
+		});
 
+        // let year = day.getFullYear();
+        // let month = (day.getMonth() + 1);
+        // let today = day.getDate().toLocaleDateString({
+        //     day:"2-digit"
+        // });
+
+        console.log(day.getDate());
+
+        let today = ""
+        let month = ""
+        let year = day.getFullYear()
+
+        if(day.getDate() < 10){
+            today = `0${day.getDate().toString()}`;
+        }
+
+        if(day.getDate() > 10){
+            today = day.getDate().toString();
+        }
+
+        if(day.getMonth() < 9){
+            month = `0${(day.getMonth() + 1).toString()}`;
+        }
+
+        if(day.getMonth() === 9){
+            month = "10"
+        }
+
+        if(day.getMonth() > 10){
+            month = day.getMonth().toString();
+        }
+
+        
+
+
+		// weekResult.setDate(week.getDate() - 7);
+		// console.log(weekResult, weekResult.replace(/\//gi, "-"));
 		//console.log(result, result.replace(/\//gi, "-").toString());
 
 		// axios
@@ -110,6 +135,20 @@ class App extends React.Component {
 				console.log(this.state.fiftyTwoWeekHigh);
 			});
 
+            console.log(`${year}-${month}-${today}`)
+
+		axios
+			.get("https://finnhub.io/api/v1/company-news", {
+				params: {
+					symbol: term,
+					token: "c7vtq6qad3i8n3bh6ph0",
+					from: "2022-01-01",
+					to: `${year}-${month}-${today}`
+				}
+			})
+			.then((response) => {
+				console.log(response.data);
+			});
 		// axios
 		// 	//.get("https://stock-shark.com/api/v1/getHistoricalPrice", {
 		// 		params: {

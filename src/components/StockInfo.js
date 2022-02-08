@@ -6,7 +6,7 @@ const StockInfo = (props) => {
 		<div>
 			<h1>{props.symbol}</h1>
 			<h2>{props.description}</h2>
-			<h3>{props.fiftyTwoWeekhigh}</h3>
+			<h3>{props.fiftyTwoWeekHigh}</h3>
 			<h3>{props.fiftyTwoWeekLow}</h3>
 			<h3>{props.openPrice}</h3>
 			<h3>{props.closePrice}</h3>
