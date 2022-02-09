@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css'
 import axios from "axios";
 import SearchBar from "./SearchBar";
 import StockInfo from "./StockInfo";
@@ -15,11 +16,43 @@ class App extends React.Component {
 		openPrice: 0,
 		closePrice: 0,
 		netChange: 0,
-		theStocks: [],
+		theStocks: [
+			"AAPL",
+			"MSFT",
+			"GOOG",
+			"AMZN",
+			"TSLA",
+			"BRK.A",
+			"TSM",
+			"FB",
+			"NVDA",
+			"TCEHY",
+			"V",
+			"UNH",
+			"JPM",
+			"LVMUY",
+			"BAC",
+			"PG",
+			"WMT",
+			"HD",
+			"DIS",
+			"ADBE",
+			"NKE",
+			"NFLX"
+		],
 		stock: [],
 		news: [],
 		stockPrice: [],
 		leadStory: [],
+		openingStock: [],
+		openingStockName: "",
+		openingSymbol: "",
+		openingFiftyTwoWeekHigh: 0,
+		openingFiftyTwoWeekLow: 0,
+		openingDescription: "",
+		openingOpenPrice: 0,
+		openingClosePrice: 0,
+		openingNetChange: 0
 	};
 
 	onSearchSubmit = (term) => {
@@ -45,40 +78,37 @@ class App extends React.Component {
 			formatMatcher: "basic"
 		});
 
-        // let year = day.getFullYear();
-        // let month = (day.getMonth() + 1);
-        // let today = day.getDate().toLocaleDateString({
-        //     day:"2-digit"
-        // });
+		// let year = day.getFullYear();
+		// let month = (day.getMonth() + 1);
+		// let today = day.getDate().toLocaleDateString({
+		//     day:"2-digit"
+		// });
 
-        console.log(day.getDate());
+		console.log(day.getDate());
 
-        let today = ""
-        let month = ""
-        let year = day.getFullYear()
+		let today = "";
+		let month = "";
+		let year = day.getFullYear();
 
-        if(day.getDate() < 10){
-            today = `0${day.getDate().toString()}`;
-        }
+		if (day.getDate() < 10) {
+			today = `0${day.getDate().toString()}`;
+		}
 
-        if(day.getDate() > 10){
-            today = day.getDate().toString();
-        }
+		if (day.getDate() > 10) {
+			today = day.getDate().toString();
+		}
 
-        if(day.getMonth() < 9){
-            month = `0${(day.getMonth() + 1).toString()}`;
-        }
+		if (day.getMonth() < 9) {
+			month = `0${(day.getMonth() + 1).toString()}`;
+		}
 
-        if(day.getMonth() === 9){
-            month = "10"
-        }
+		if (day.getMonth() === 9) {
+			month = "10";
+		}
 
-        if(day.getMonth() > 10){
-            month = day.getMonth().toString();
-        }
-
-        
-
+		if (day.getMonth() > 10) {
+			month = day.getMonth().toString();
+		}
 
 		// weekResult.setDate(week.getDate() - 7);
 		// console.log(weekResult, weekResult.replace(/\//gi, "-"));
@@ -103,7 +133,10 @@ class App extends React.Component {
 				}
 			})
 			.then((response) => {
+				//adding the response json to an object that can then be used to setState
+				//probably can be refactored because there is an easier way to do this
 				this.setState({ stock: response.data.data });
+				//individually setting the state of the search stock...can be refactored
 				this.setState({
 					symbol: this.state.stock[`${this.state.stockName}`].symbol
 				});
@@ -136,8 +169,9 @@ class App extends React.Component {
 				console.log(this.state.fiftyTwoWeekHigh);
 			});
 
-            console.log(`${year}-${month}-${today}`)
+		console.log(`${year}-${month}-${today}`);
 
+		//getting company news from the finnhub api based on whatever is searched for
 		axios
 			.get("https://finnhub.io/api/v1/company-news", {
 				params: {
@@ -178,12 +212,41 @@ class App extends React.Component {
 			.then((response) => {
 				let array = [];
 
-				this.setState({leadStory: response.data[0]})
+				this.setState({ leadStory: response.data[0] });
 
 				for (let i = 1; i < 5; i++) {
 					array.push(response.data[i]);
 				}
 				this.setState({ news: array });
+			});
+
+		//get random stock quote from stock-shark
+
+		//creating a random number to index through this.state.theStocks
+		let randomNum = Math.floor(
+			Math.random() * (this.state.theStocks.length - 0) + 0
+		);
+		let randomStock = this.state.theStocks[randomNum];
+
+		//creating an object to put the response.data.data object json in...can be refactored 
+		this.setState({ openingStockName: randomStock })
+		axios
+			.get("https://stock-shark.com/api/v1/getLiveQuote", {
+				params: {
+					ticker: randomStock,
+					token: "hqhgglrpsjs"
+				}
+			})
+			.then((response) => {
+				//individually setting the state for all of the opening stock properties..can be refactored
+				this.setState({ openingStock: response.data.data });
+				this.setState({ openingSymbol: this.state.openingStock[`${this.state.openingStockName}`].symbol});
+				this.setState({ openingClosePrice: this.state.openingStock[`${this.state.openingStockName}`].closePrice})
+				this.setState({ openingDescription: this.state.openingStock[`${this.state.openingStockName}`].description})
+				this.setState({ openingFiftyTwoWeekHigh: this.state.openingStock[`${this.state.openingStockName}`]['52WkHigh']})
+				this.setState({ openingFiftyTwoWeekLow: this.state.openingStock[`${this.state.openingStockName}`]['52WkLow']})
+				this.setState({ openingNetChange: this.state.openingStock[`${this.state.openingStockName}`].netChange})
+				this.setState({ openingOpenPrice: this.state.openingStock[`${this.state.openingStockName}`].openPrice});
 			});
 	}
 
@@ -191,7 +254,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<SearchBar onSubmit={this.onSearchSubmit} />
-				{/* <StockInfo
+				<StockInfo
 					symbol={this.state.symbol}
 					fiftyTwoWeekHigh={this.state.fiftyTwoWeekHigh}
 					fiftyTwoWeekLow={this.state.fiftyTwoWeekLow}
@@ -199,8 +262,20 @@ class App extends React.Component {
 					openPrice={this.state.openPrice}
 					closePrice={this.state.closePrice}
 					netChange={this.state.netChange}
-				/> */}
-				<News news={this.state.news} leadStory={this.state.leadStory} />
+					
+				/>
+				<News
+					news={this.state.news}
+					leadStory={this.state.leadStory}
+					loadStock={this.state.loadStock}
+					openingSymbol={this.state.openingSymbol}
+					openingFiftyTwoWeekHigh={this.state.openingFiftyTwoWeekHigh}
+					openingFiftyTwoWeekLow={this.state.openingFiftyTwoWeekLow}
+					openingDescription={this.state.openingDescription}
+					openingOpenPrice={this.state.openingOpenPrice}
+					openingClosePrice={this.state.openingClosePrice}
+					openingNetChange={this.state.openingNetChange}
+				/>
 				{/* <StockPrices
 					names={this.state.userStocks}
 					prices={this.state.userStocks.map((stock) => {

@@ -1,4 +1,5 @@
 import React from "react";
+import "./SearchBar.css";
 
 class SearchBar extends React.Component {
 	state = { term: "" };
@@ -8,21 +9,26 @@ class SearchBar extends React.Component {
 		event.preventDefault();
 
 		this.props.onSubmit(this.state.term);
-	}
+	};
 
 	render() {
 		return (
 			<div>
-				<form onSubmit={this.onFormSubmit}>
-					<div>
-						<label>Enter Stock Ticker to Search</label>
-						<input
-							type="text"
-							value={this.state.term}
-							onChange={(e) => this.setState({ term: e.target.value.toUpperCase() })}
-						/>
-					</div>
-				</form>
+				<div className="search-bar-box">
+				<div><h1 className="title">Enter Stock Ticker</h1></div>
+					<form onSubmit={this.onFormSubmit}>
+						<div>
+							<input
+								className="searchbar"
+								type="text"
+								value={this.state.term}
+								onChange={(e) =>
+									this.setState({ term: e.target.value.toUpperCase() })
+								}
+							/>
+						</div>
+					</form>
+				</div>
 			</div>
 		);
 	}

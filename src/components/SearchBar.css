@@ -1,0 +1,20 @@
+.search-bar-box{
+    position:absolute;
+    margin-bottom: 10px;
+    align-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.title{
+    font-family: Nunito;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.searchbar{
+    width: 50%;
+    height: 25px;
+    border-radius: 9px;
+    border:.25px,.25 black
+}
