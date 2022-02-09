@@ -18,7 +18,8 @@ class App extends React.Component {
 		theStocks: [],
 		stock: [],
 		news: [],
-		stockPrice: []
+		stockPrice: [],
+		leadStory: [],
 	};
 
 	onSearchSubmit = (term) => {
@@ -177,7 +178,9 @@ class App extends React.Component {
 			.then((response) => {
 				let array = [];
 
-				for (let i = 0; i < 10; i++) {
+				this.setState({leadStory: response.data[0]})
+
+				for (let i = 1; i < 5; i++) {
 					array.push(response.data[i]);
 				}
 				this.setState({ news: array });
@@ -188,7 +191,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<SearchBar onSubmit={this.onSearchSubmit} />
-				<StockInfo
+				{/* <StockInfo
 					symbol={this.state.symbol}
 					fiftyTwoWeekHigh={this.state.fiftyTwoWeekHigh}
 					fiftyTwoWeekLow={this.state.fiftyTwoWeekLow}
@@ -196,8 +199,8 @@ class App extends React.Component {
 					openPrice={this.state.openPrice}
 					closePrice={this.state.closePrice}
 					netChange={this.state.netChange}
-				/>
-				<News news={this.state.news} />
+				/> */}
+				<News news={this.state.news} leadStory={this.state.leadStory} />
 				{/* <StockPrices
 					names={this.state.userStocks}
 					prices={this.state.userStocks.map((stock) => {
