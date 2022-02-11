@@ -1,9 +1,10 @@
 import React from "react";
+import './StockInfo.css';
 import axios from "axios";
 
 const StockInfo = (props) => {
 	return (
-		<div>
+		<div className="search-stock-box">
 			<h1>{props.symbol}</h1>
 			<h2>{props.description}</h2>
 			<h3>{props.fiftyTwoWeekHigh}</h3>

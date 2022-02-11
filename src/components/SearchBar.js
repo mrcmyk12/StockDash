@@ -13,11 +13,11 @@ class SearchBar extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<div className="search-bar-box">
-				<div><h1 className="title">Enter Stock Ticker</h1></div>
+			<div className="container" style={{ "alignContent": "center"}}>
+				<div className="row">
+				<div className="col"><h1 className="title">Enter Stock Ticker</h1></div>
 					<form onSubmit={this.onFormSubmit}>
-						<div>
+						<div style={{ "textAlign": "center"}}>
 							<input
 								className="searchbar"
 								type="text"

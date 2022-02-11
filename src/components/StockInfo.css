@@ -1,0 +1,22 @@
+/* Rectangle 7
+
+position: absolute;
+width: 1256px;
+height: 340px;
+left: 128px;
+top: 268px;
+
+background: #FFFFFF;
+border: 2px solid #000000;
+box-sizing: border-box;
+box-shadow: 4px 12px 4px rgba(0, 0, 0, 0.25);
+border-radius: 13px; */
+
+
+.search-stock-box{
+    position: absolute;
+    height: 300px;
+    border: 1px solid white;
+    border-radius: 13px;
+    box-shadow: 4px 12px 8px rgba(0,0,0,0.25);
+}

@@ -2,10 +2,9 @@
 .crypto-box{
     position:absolute;
     margin-top: 80px;
-    width: 500px;
     height: 300px;
     right: 40px;
-    border: 1px solid white;
+    border: 1px,1px solid black;
     box-sizing: border-box;
     box-shadow: 4px 10px 4px rgba(0,0,0,0.25);
     border-radius: 13px;
@@ -13,45 +12,33 @@
 
 
 .news-box{
-    position: absolute;
-    margin-top: 80px;
-    left: 40px;
-    width: 500px;
+    margin-top: 25px;
     height: 300px;
-    border: 1px,1px,1px,1px solid black;
+    border: 1px,1px solid black;
     box-sizing: border-box;
-    box-shadow: 4px 10px 4px rgba(0,0,0,0.25);
-    border-radius: 13px;
+    box-shadow: 4px 10px 10px rgba(0,0,0,0.25);
 }
 
 
 .lead-story-image{
     position: absolute;
-    width: 175px;
-    height: 175px;
-    left: 10px;
-    top: 10px;
+    width: 210px;
+    height: 225px;
+    margin-left: 10px;
+    margin-top: 10px;
     object-fit: inherit;
     border-radius: 13px;
     box-shadow: 4px 10px 4px rgba(0,0,0,0.25);
 }
 
 .news-headline-headline{
-    position: absolute;
-    width: 225px;
-    height: 100px;
-    left: 200px;
-    line-height: 25px;
-    font-size: 12px;
+    margin-top: 10px;
+    font-size: 19px;
     font-family: Nunito;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .lead-story-summary{
-    position: absolute;
-    width: 225px;
-    left: 200px;
-    top: 115px;
     font-size: 10px;
 }
 
@@ -60,6 +47,7 @@
     bottom: 10px;
     left: 10px;
     right: 10px;
+    height: 100px;
 }
 
 .substory-list{
@@ -70,6 +58,7 @@
     padding: 0px;
     margin: 5px;
     margin-left: 10px;
+    list-style-type: none;
 }
 
 .a-tag-substory{
@@ -83,7 +72,7 @@
 .stock-ticker-box{
     left: 10px;
     top: 10px;
-    width: 250px;
+    width: 225px;
     height: 200px;
 }
 

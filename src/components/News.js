@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, CardBody } from "reactstrap";
 import "./News.css";
 
 const News = (props) => {
@@ -23,36 +24,51 @@ const News = (props) => {
 	});
 
 	let getStatus = () => {
-		if(props.openingNetChange < 0) {
+		if (props.openingNetChange < 0) {
 			return (
-				<div className="stock-net-change" style={{ color: "red"}}>
+				<div className="stock-net-change" style={{ color: "red" }}>
 					{props.openingNetChange}
 				</div>
-			)
+			);
 		} else {
-			return(
-				<div className="stock-new-change">
-					{props.openingNetChange}
-				</div>
-			)
+			return (
+				<div className="stock-new-change">{props.openingNetChange}</div>
+			);
 		}
-	}
+	};
 	return (
-		<div>
-			<div className="news-box">
-				<div className="news-headline-image">
-					<img src={props.leadStory.image} className="lead-story-image" />
+		<div className="container">
+			<Card className="news-box">
+				<div className="row">
+					<div className="col">
+						<a href={props.leadStory.url} target="_blank">
+							<img
+								className="lead-story-image"
+								src={props.leadStory.image}
+							/>
+						</a>
+					</div>
+					<div className="col">
+						<div className="row">
+							<a href={props.leadStory.url} target="_blank" style={{ "textDecoration": "none", "color" : "black"}}>
+								<div className="news-headline-headline">
+									{props.leadStory.headline}
+								</div>
+							</a>
+						</div>
+
+						<div className="row">
+							<div className="lead-story-summary">
+								{props.leadStory.summary}
+							</div>
+						</div>
+					</div>
+					<div className="col-6">{newsie}</div>
 				</div>
-				<div className="news-headline-headline">
-					<h2>{props.leadStory.headline}</h2>
-				</div>
-				{/* <div className="lead-story-summary">
-					{props.leadStory.summary}
-				</div> */}
-				<div className="news-other-stories">{newsie}</div>
-			</div>
-			<div className="crypto-box">
-				<div className="stock-ticker-box">
+			</Card>
+			{/* <div className="col">
+			
+			
 					<div className="stock-ticker-symbol">{props.openingSymbol}</div>
 					<div className="stock-description">
 						{props.openingDescription}
@@ -71,16 +87,22 @@ const News = (props) => {
 					</div>
 				</div>
 				<div className="stock-ticker-today-box">
-				<div className="stock-subheading"><p>Net Change:</p></div>
+					<div className="stock-subheading">
+						<p>Net Change:</p>
+					</div>
 					<div className="stock-net-change">{props.openingNetChange}</div>
-					<div className="stock-subheading"><p>Opening Price:</p></div>
+					<div className="stock-subheading">
+						<p>Opening Price:</p>
+					</div>
 					<div className="stock-open-price">{props.openingOpenPrice}</div>
-					<div className="stock-subheading"><p>Closing Price:</p></div>
+					<div className="stock-subheading">
+						<p>Closing Price:</p>
+					</div>
 					<div className="stock-close-price">
 						{props.openingClosePrice}
 					</div>
-				</div>
-			</div>
+
+			</div> */}
 		</div>
 	);
 };

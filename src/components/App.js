@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css'
+import "./App.css";
 import axios from "axios";
 import SearchBar from "./SearchBar";
 import StockInfo from "./StockInfo";
@@ -206,7 +206,6 @@ class App extends React.Component {
 			.get("https://finnhub.io/api/v1/news?category=general", {
 				params: {
 					token: "c7vtq6qad3i8n3bh6ph0",
-					minId: 10
 				}
 			})
 			.then((response) => {
@@ -214,7 +213,7 @@ class App extends React.Component {
 
 				this.setState({ leadStory: response.data[0] });
 
-				for (let i = 1; i < 5; i++) {
+				for (let i = 1; i < 13; i++) {
 					array.push(response.data[i]);
 				}
 				this.setState({ news: array });
@@ -228,8 +227,8 @@ class App extends React.Component {
 		);
 		let randomStock = this.state.theStocks[randomNum];
 
-		//creating an object to put the response.data.data object json in...can be refactored 
-		this.setState({ openingStockName: randomStock })
+		//creating an object to put the response.data.data object json in...can be refactored
+		this.setState({ openingStockName: randomStock });
 		axios
 			.get("https://stock-shark.com/api/v1/getLiveQuote", {
 				params: {
@@ -240,42 +239,77 @@ class App extends React.Component {
 			.then((response) => {
 				//individually setting the state for all of the opening stock properties..can be refactored
 				this.setState({ openingStock: response.data.data });
-				this.setState({ openingSymbol: this.state.openingStock[`${this.state.openingStockName}`].symbol});
-				this.setState({ openingClosePrice: this.state.openingStock[`${this.state.openingStockName}`].closePrice})
-				this.setState({ openingDescription: this.state.openingStock[`${this.state.openingStockName}`].description})
-				this.setState({ openingFiftyTwoWeekHigh: this.state.openingStock[`${this.state.openingStockName}`]['52WkHigh']})
-				this.setState({ openingFiftyTwoWeekLow: this.state.openingStock[`${this.state.openingStockName}`]['52WkLow']})
-				this.setState({ openingNetChange: this.state.openingStock[`${this.state.openingStockName}`].netChange})
-				this.setState({ openingOpenPrice: this.state.openingStock[`${this.state.openingStockName}`].openPrice});
+				this.setState({
+					openingSymbol:
+						this.state.openingStock[`${this.state.openingStockName}`]
+							.symbol
+				});
+				this.setState({
+					openingClosePrice:
+						this.state.openingStock[`${this.state.openingStockName}`]
+							.closePrice
+				});
+				this.setState({
+					openingDescription:
+						this.state.openingStock[`${this.state.openingStockName}`]
+							.description
+				});
+				this.setState({
+					openingFiftyTwoWeekHigh:
+						this.state.openingStock[`${this.state.openingStockName}`][
+							"52WkHigh"
+						]
+				});
+				this.setState({
+					openingFiftyTwoWeekLow:
+						this.state.openingStock[`${this.state.openingStockName}`][
+							"52WkLow"
+						]
+				});
+				this.setState({
+					openingNetChange:
+						this.state.openingStock[`${this.state.openingStockName}`]
+							.netChange
+				});
+				this.setState({
+					openingOpenPrice:
+						this.state.openingStock[`${this.state.openingStockName}`]
+							.openPrice
+				});
 			});
 	}
 
 	render() {
 		return (
-			<div>
-				<SearchBar onSubmit={this.onSearchSubmit} />
-				<StockInfo
-					symbol={this.state.symbol}
-					fiftyTwoWeekHigh={this.state.fiftyTwoWeekHigh}
-					fiftyTwoWeekLow={this.state.fiftyTwoWeekLow}
-					description={this.state.description}
-					openPrice={this.state.openPrice}
-					closePrice={this.state.closePrice}
-					netChange={this.state.netChange}
-					
-				/>
-				<News
-					news={this.state.news}
-					leadStory={this.state.leadStory}
-					loadStock={this.state.loadStock}
-					openingSymbol={this.state.openingSymbol}
-					openingFiftyTwoWeekHigh={this.state.openingFiftyTwoWeekHigh}
-					openingFiftyTwoWeekLow={this.state.openingFiftyTwoWeekLow}
-					openingDescription={this.state.openingDescription}
-					openingOpenPrice={this.state.openingOpenPrice}
-					openingClosePrice={this.state.openingClosePrice}
-					openingNetChange={this.state.openingNetChange}
-				/>
+			<div className="container-fluid">
+				<div className="row">
+					<SearchBar onSubmit={this.onSearchSubmit} />
+				</div>
+				<div className="row">
+					{/* <StockInfo
+						symbol={this.state.symbol}
+						fiftyTwoWeekHigh={this.state.fiftyTwoWeekHigh}
+						fiftyTwoWeekLow={this.state.fiftyTwoWeekLow}
+						description={this.state.description}
+						openPrice={this.state.openPrice}
+						closePrice={this.state.closePrice}
+						netChange={this.state.netChange}
+					/> */}
+				</div>
+				<div className="row">
+					<News
+						news={this.state.news}
+						leadStory={this.state.leadStory}
+						loadStock={this.state.loadStock}
+						openingSymbol={this.state.openingSymbol}
+						openingFiftyTwoWeekHigh={this.state.openingFiftyTwoWeekHigh}
+						openingFiftyTwoWeekLow={this.state.openingFiftyTwoWeekLow}
+						openingDescription={this.state.openingDescription}
+						openingOpenPrice={this.state.openingOpenPrice}
+						openingClosePrice={this.state.openingClosePrice}
+						openingNetChange={this.state.openingNetChange}
+					/>
+				</div>
 				{/* <StockPrices
 					names={this.state.userStocks}
 					prices={this.state.userStocks.map((stock) => {
