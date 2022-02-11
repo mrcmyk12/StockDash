@@ -13,9 +13,9 @@ class SearchBar extends React.Component {
 
 	render() {
 		return (
-			<div className="container" style={{ "alignContent": "center"}}>
+			<div className="container" style={{ alignContent: "center", marginTop:"25px"}}>
 				<div className="row">
-				<div className="col"><h1 className="title">Enter Stock Ticker</h1></div>
+				{/* <div className="col"><h1 className="title">Enter Stock Ticker</h1></div> */}
 					<form onSubmit={this.onFormSubmit}>
 						<div style={{ "textAlign": "center"}}>
 							<input

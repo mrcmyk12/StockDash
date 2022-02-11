@@ -6,10 +6,10 @@ const News = (props) => {
 	console.log(props);
 	const newsie = props.news.map((newy) => {
 		return (
-			<div>
+			<div key={newy.id}>
 				<div>
 					<ul className="substory-unordered-list">
-						<li className="substory-list">
+						<li  className="substory-list">
 							<a
 								className="a-tag-substory"
 								target="_blank"

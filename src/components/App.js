@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import StockInfo from "./StockInfo";
 import News from "./News";
 import StockPrices from "./StockPrices";
+import MarketSummary from "./MarketSummary";
 
 class App extends React.Component {
 	state = {
@@ -41,6 +42,7 @@ class App extends React.Component {
 			"NFLX"
 		],
 		stock: [],
+		marketSummary: [],
 		news: [],
 		stockPrice: [],
 		leadStory: [],
@@ -277,6 +279,23 @@ class App extends React.Component {
 							.openPrice
 				});
 			});
+		
+		const options = {
+			method: 'GET',
+			url: "https://yfapi.net/v6/finance/quote/marketSummary",
+			params:{lang:'en'},
+			headers: {
+				'x-api-key':"xFvUb3O6gw9FRf87r2Z8F2ZM896vWKie6Qkrrr7Y"
+			}
+		};
+
+		axios.request(options).then((response) => {
+			this.setState({ marketSummary: response.data.marketSummaryResponse.result});
+			console.log(this.state.marketSummary);
+		}).catch((error) => {
+			console.error(error);
+		})
+
 	}
 
 	render() {
@@ -284,6 +303,9 @@ class App extends React.Component {
 			<div className="container-fluid">
 				<div className="row">
 					<SearchBar onSubmit={this.onSearchSubmit} />
+				</div>
+				<div className="row" style={{ marginTop: "10px"}}>
+					<MarketSummary marketSummary={this.state.marketSummary} />
 				</div>
 				<div className="row">
 					{/* <StockInfo
