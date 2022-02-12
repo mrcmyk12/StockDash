@@ -54,7 +54,8 @@ class App extends React.Component {
 		openingDescription: "",
 		openingOpenPrice: 0,
 		openingClosePrice: 0,
-		openingNetChange: 0
+		openingNetChange: 0,
+		selectedStockNews: []
 	};
 
 	onSearchSubmit = (term) => {
@@ -184,7 +185,8 @@ class App extends React.Component {
 				}
 			})
 			.then((response) => {
-				console.log(response.data);
+				this.setState({ selectedStockNews: response});
+				console.log(this.state.selectedStockNews)
 			});
 		// axios
 		// 	//.get("https://stock-shark.com/api/v1/getHistoricalPrice", {
@@ -207,7 +209,7 @@ class App extends React.Component {
 		axios
 			.get("https://finnhub.io/api/v1/news?category=general", {
 				params: {
-					token: "c7vtq6qad3i8n3bh6ph0",
+					token: "c7vtq6qad3i8n3bh6ph0"
 				}
 			})
 			.then((response) => {
@@ -279,36 +281,40 @@ class App extends React.Component {
 							.openPrice
 				});
 			});
-		
+
 		const options = {
-			method: 'GET',
+			method: "GET",
 			url: "https://yfapi.net/v6/finance/quote/marketSummary",
-			params:{lang:'en'},
+			params: { lang: "en" },
 			headers: {
-				'x-api-key':"xFvUb3O6gw9FRf87r2Z8F2ZM896vWKie6Qkrrr7Y"
+				"x-api-key": "xFvUb3O6gw9FRf87r2Z8F2ZM896vWKie6Qkrrr7Y"
 			}
 		};
 
-		axios.request(options).then((response) => {
-			this.setState({ marketSummary: response.data.marketSummaryResponse.result});
-			console.log(this.state.marketSummary);
-		}).catch((error) => {
-			console.error(error);
-		})
-
+		axios
+			.request(options)
+			.then((response) => {
+				this.setState({
+					marketSummary: response.data.marketSummaryResponse.result
+				});
+				console.log(this.state.marketSummary);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}
 
 	render() {
 		return (
 			<div className="container-fluid">
-				<div className="row">
-					<SearchBar onSubmit={this.onSearchSubmit} />
-				</div>
-				<div className="row" style={{ marginTop: "10px"}}>
+				<div className="row" style={{ marginTop: "15px"}}>
 					<MarketSummary marketSummary={this.state.marketSummary} />
 				</div>
-				<div className="row">
-					{/* <StockInfo
+				<div className="row" style={{ marginTop: "10px" }}>
+					<SearchBar onSubmit={this.onSearchSubmit} />
+				</div>
+				<div className="row" style={{ marginTop: "15px"}}>
+					<StockInfo
 						symbol={this.state.symbol}
 						fiftyTwoWeekHigh={this.state.fiftyTwoWeekHigh}
 						fiftyTwoWeekLow={this.state.fiftyTwoWeekLow}
@@ -316,7 +322,7 @@ class App extends React.Component {
 						openPrice={this.state.openPrice}
 						closePrice={this.state.closePrice}
 						netChange={this.state.netChange}
-					/> */}
+					/>
 				</div>
 				<div className="row">
 					<News

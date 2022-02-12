@@ -20,3 +20,9 @@ border-radius: 13px; */
     border-radius: 13px;
     box-shadow: 4px 12px 8px rgba(0,0,0,0.25);
 }
+
+.stockinfo-card{
+    width: 95%;
+    margin-top: 15px;
+    box-shadow: 4px 12px 8px rgba(0,0,0,0.25);
+}

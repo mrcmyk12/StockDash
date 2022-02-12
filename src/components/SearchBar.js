@@ -1,5 +1,6 @@
 import React from "react";
 import "./SearchBar.css";
+import {Input} from 'reactstrap'
 
 class SearchBar extends React.Component {
 	state = { term: "" };
@@ -18,9 +19,10 @@ class SearchBar extends React.Component {
 				{/* <div className="col"><h1 className="title">Enter Stock Ticker</h1></div> */}
 					<form onSubmit={this.onFormSubmit}>
 						<div style={{ "textAlign": "center"}}>
-							<input
+							<Input
 								className="searchbar"
 								type="text"
+								placeholder="Search for Stock Here"
 								value={this.state.term}
 								onChange={(e) =>
 									this.setState({ term: e.target.value.toUpperCase() })
