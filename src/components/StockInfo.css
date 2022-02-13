@@ -26,3 +26,73 @@ border-radius: 13px; */
     margin-top: 15px;
     box-shadow: 4px 12px 8px rgba(0,0,0,0.25);
 }
+
+.news-image{
+    width: 225px;
+    height: 225px;
+    border-radius: 13px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.stock-symbol{
+    font-family: Nunito;
+    font-size: 55px;
+    font-weight: 800;
+}
+
+.stock-description{
+    font-family: Nunito;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.weekhigh-heading{
+    font-family: Nunito;
+    font-size: 10px;
+    font-style: italic;
+}
+
+.weekhigh{
+    font-family: Nunito;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.news-headline{
+    margin-top: 10px;
+    font-size: 19px;
+    font-family: Nunito;
+    font-weight: 800;
+}
+
+.news-summary{
+    font-family: Nunito;
+    font-size: 10px;
+}
+
+.stock-fundamentals{
+    font-family: Nunito;
+    font-size: 45px;
+    font-weight: 800;
+}
+
+.stock-fundamentals-price{
+    font-family: Nunito;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.price-heading{
+    font-family: Nunito;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.other-headline{
+    text-decoration: underline;
+    color: black;
+    font-family: Nunito;
+    font-weight: 700;
+    font-size: 8px;
+}

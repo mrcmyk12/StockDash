@@ -185,7 +185,7 @@ class App extends React.Component {
 				}
 			})
 			.then((response) => {
-				this.setState({ selectedStockNews: response});
+				this.setState({ selectedStockNews: response.data});
 				console.log(this.state.selectedStockNews)
 			});
 		// axios
@@ -322,6 +322,7 @@ class App extends React.Component {
 						openPrice={this.state.openPrice}
 						closePrice={this.state.closePrice}
 						netChange={this.state.netChange}
+						selectedStockNews={this.state.selectedStockNews}
 					/>
 				</div>
 				<div className="row">

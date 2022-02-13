@@ -31,6 +31,7 @@
     box-shadow: 4px 10px 4px rgba(0,0,0,0.25);
 }
 
+
 .news-headline-headline{
     margin-top: 10px;
     font-size: 19px;
@@ -39,6 +40,7 @@
 }
 
 .lead-story-summary{
+    font-family: Nunito;
     font-size: 10px;
 }
 
@@ -67,6 +69,13 @@
     font-family: Nunito;
     font-weight: lighter;
     font-size: 12px;
+}
+
+.a-tag-substory:hover{
+    color: black;
+    font-family: Nunito;
+    font-weight: 700;
+    transform: translateX(-5px) translateY(-5px) translateZ(-5px)
 }
 
 .stock-ticker-box{
