@@ -159,7 +159,7 @@ const MarketSummary = (props) => {
 
 						<div className="col">
 							<FontAwesomeIcon
-								icon={faCircleDown}
+								icon={faCircleUp}
 								size="xl"
 								style={{ color: "#466d1d" }}
 							/>
