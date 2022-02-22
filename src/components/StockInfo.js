@@ -14,7 +14,7 @@ const StockInfo = (props) => {
 			<div className="container">
 				<Card className="stockinfo-card">
 					<div className="row">
-						<div className="col-3" style={{ marginLeft: "10px"}}>
+						<div className="col-xs-6 col-md-3" style={{ marginLeft: "10px"}}>
 							<div className="row">
 								<div className="stock-symbol">{props.symbol}</div>
 							</div>
@@ -32,7 +32,7 @@ const StockInfo = (props) => {
 								<div className="weekhigh">{props.fiftyTwoWeekLow}</div>
 							</div>
 						</div>
-						<div className="col">
+						<div className="col-xs-6 col">
 							<div className="row">
 								<div className="col">
 									<a
@@ -78,7 +78,7 @@ const StockInfo = (props) => {
 								</div>
 							</div>
 						</div>
-						<div className="col-2">
+						<div className="col-xs-12 col-md-2">
 							{" "}
 							<div
 								className="stock-fundamentals"
@@ -152,7 +152,7 @@ const StockInfo = (props) => {
 							</div>
 						</div>
 					</div>
-					<div className="col-2">
+					<div className="col-xs-6 col-md-2">
 						{" "}
 						<div
 							className="stock-fundamentals"
