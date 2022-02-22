@@ -40,7 +40,7 @@ const News = (props) => {
 		<div className="container">
 			<Card className="news-box">
 				<div className="row">
-					<div className="col">
+					<div className="col-xs-6 col">
 						<a href={props.leadStory.url} target="_blank">
 							<img
 								className="lead-story-image"
@@ -48,7 +48,7 @@ const News = (props) => {
 							/>
 						</a>
 					</div>
-					<div className="col">
+					<div className="col-xs-6 col">
 						<div className="row">
 							<a href={props.leadStory.url} target="_blank" style={{ "textDecoration": "none", "color" : "black"}}>
 								<div className="news-headline-headline">
@@ -63,7 +63,7 @@ const News = (props) => {
 							</div>
 						</div>
 					</div>
-					<div className="col-6">{newsie}</div>
+					<div className="col-md-6 col-xs-12">{newsie}</div>
 				</div>
 			</Card>
 			{/* <div className="col">

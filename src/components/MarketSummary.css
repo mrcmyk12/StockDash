@@ -27,5 +27,6 @@
 .market-card{
     height: 75px;
     margin-bottom: 10px;
+    border-style: solid;
     box-shadow: 4px 10px 10px rgba(0,0,0,0.25);
 }

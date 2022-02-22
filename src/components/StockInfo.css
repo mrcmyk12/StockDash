@@ -22,10 +22,13 @@ border-radius: 13px; */
 }
 
 .stockinfo-card{
-    width: 95%;
+    position: absolute;
+    width: 100%;
     margin-top: 15px;
     box-shadow: 4px 12px 8px rgba(0,0,0,0.25);
 }
+
+
 
 .news-image{
     width: 225px;
@@ -73,13 +76,13 @@ border-radius: 13px; */
 
 .stock-fundamentals{
     font-family: Nunito;
-    font-size: 45px;
+    font-size: 40px;
     font-weight: 800;
 }
 
 .stock-fundamentals-price{
     font-family: Nunito;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
 }
 

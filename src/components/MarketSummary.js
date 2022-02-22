@@ -11,8 +11,8 @@ const MarketSummary = (props) => {
 		if (market.regularMarketChange.raw < 0) {
 			if (market.symbol === "BTC-USD") {
 				return (
-					<div className="col-2">
-						<Card className="market-card">
+					<div className="col-sm-4 col-md-2">
+						<Card className="market-card" style={{ borderColor: "#d21404"}}>
 							<div className="row">
 								<div
 									className="market-name"
@@ -52,8 +52,8 @@ const MarketSummary = (props) => {
 				);
 			}
 			return (
-				<div className="col-2">
-					<Card className="market-card">
+				<div className="col-sm-4 col-md-2">
+					<Card className="market-card" style={{ borderColor: "#d21404"}}>
 						<div className="row">
 							<div className="market-name" style={{ color: "#d21404" }}>
 								{market.shortName}
@@ -93,8 +93,8 @@ const MarketSummary = (props) => {
 
 		if (market.symbol === "BTC-USD" && market.regularMarketChange.raw > 0) {
 			return (
-				<div className="col-2">
-					<Card className="market-card">
+				<div className="col-md-2 col-sm-4">
+					<Card className="market-card" style={{ borderColor: "#466d1d"}}>
 						<div className="row">
 							<div className="market-name" style={{ color: "#466d1d" }}>
 								{market.symbol}
@@ -121,7 +121,7 @@ const MarketSummary = (props) => {
 
 							<div className="col">
 								<FontAwesomeIcon
-									icon={faCircleDown}
+									icon={faCircleUp}
 									size="xl"
 									style={{ color: "#466d1d" }}
 								/>
@@ -133,8 +133,8 @@ const MarketSummary = (props) => {
 		}
 
 		return (
-			<div className="col-2">
-				<Card className="market-card">
+			<div className="col-md-2 col-sm-4">
+				<Card className="market-card" style={{ borderColor: "#466d1d"}}>
 					<div className="row">
 						<div className="market-name" style={{ color: "#466d1d" }}>
 							{market.shortName}

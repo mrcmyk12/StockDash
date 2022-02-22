@@ -6,6 +6,7 @@ import StockInfo from "./StockInfo";
 import News from "./News";
 import StockPrices from "./StockPrices";
 import MarketSummary from "./MarketSummary";
+import Search from "./Search";
 
 class App extends React.Component {
 	state = {
@@ -55,7 +56,8 @@ class App extends React.Component {
 		openingOpenPrice: 0,
 		openingClosePrice: 0,
 		openingNetChange: 0,
-		selectedStockNews: []
+		selectedStockNews: [],
+		searchResults:[]
 	};
 
 	onSearchSubmit = (term) => {
@@ -87,7 +89,7 @@ class App extends React.Component {
 		//     day:"2-digit"
 		// });
 
-		console.log(day.getDate());
+		// console.log(day.getDate());
 
 		let today = "";
 		let month = "";
@@ -125,6 +127,22 @@ class App extends React.Component {
 		// 		this.setState({ stock: response.data.data[0] });
 		// 		console.log(this.state.stock.symbol);
 		// 	});
+
+		axios
+			.get("https://yfapi.net/v6/finance/autocomplete", {
+				params: {
+					region: "US",
+					lang: "en",
+					query: term
+				},
+				headers: {
+					"x-api-key": "xFvUb3O6gw9FRf87r2Z8F2ZM896vWKie6Qkrrr7Y"
+				}
+			})
+			.then((response) => {
+				this.setState({ searchResults: response.data.ResultSet.Result });
+				console.log(this.state.searchResults);
+			});
 
 		this.setState({ stockName: term });
 
@@ -185,8 +203,8 @@ class App extends React.Component {
 				}
 			})
 			.then((response) => {
-				this.setState({ selectedStockNews: response.data});
-				console.log(this.state.selectedStockNews)
+				this.setState({ selectedStockNews: response.data });
+				console.log(this.state.selectedStockNews);
 			});
 		// axios
 		// 	//.get("https://stock-shark.com/api/v1/getHistoricalPrice", {
@@ -307,13 +325,13 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="container-fluid">
-				<div className="row" style={{ marginTop: "15px"}}>
-					<MarketSummary marketSummary={this.state.marketSummary} />
-				</div>
 				<div className="row" style={{ marginTop: "10px" }}>
 					<SearchBar onSubmit={this.onSearchSubmit} />
 				</div>
-				<div className="row" style={{ marginTop: "15px"}}>
+				<div className="row" style={{ marginTop: "10px"}}>
+					<Search searchResults={this.state.searchResults} />
+				</div>
+				<div className="row" style={{ marginTop: "15px" }}>
 					<StockInfo
 						symbol={this.state.symbol}
 						fiftyTwoWeekHigh={this.state.fiftyTwoWeekHigh}
@@ -338,6 +356,9 @@ class App extends React.Component {
 						openingClosePrice={this.state.openingClosePrice}
 						openingNetChange={this.state.openingNetChange}
 					/>
+				</div>
+				<div className="row" style={{ marginTop: "15px" }}>
+					<MarketSummary marketSummary={this.state.marketSummary} />
 				</div>
 				{/* <StockPrices
 					names={this.state.userStocks}
